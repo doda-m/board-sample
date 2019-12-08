@@ -2,10 +2,10 @@ from flask import Flask
 app = Flask(__name__)
 
 file = open("index.html", "r")
-contents = file.read()
+indexhtml = file.read()
 file.close()
 
 @app.route("/")
-def hello():
-    return contents
+def index():
+    return indexhtml
     # return "hello"
