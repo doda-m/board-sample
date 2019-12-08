@@ -1,6 +1,11 @@
 from flask import Flask
 app = Flask(__name__)
 
+file = open("index.html", "r")
+contents = file.read()
+file.close()
+
 @app.route("/")
 def hello():
-    return "<html><body><h1>Hi test for deploy!</h1></body></html>\n"
+    return content
+    # return "hello"
