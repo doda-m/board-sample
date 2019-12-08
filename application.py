@@ -7,5 +7,5 @@ file.close()
 
 @app.route("/")
 def hello():
-    return content
+    return contents
     # return "hello"
