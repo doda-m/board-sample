@@ -11,18 +11,16 @@ app = Flask(__name__)
 # cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 # cursor = cnxn.cursor()
 
-# @app.route("/", methods=['GET', 'POST'])
-@app.route("/")
+# @app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def indexform():
-    indexhtml = render_template('index.html')
-    return indexhtml
-    # if request.method == 'POST':
-    #     if str(request.form['user'] == "dodare" and str(request.form['password']) == "sdn"):
-    #         return render_template('signin.html')
-    #     else:
-    #         return render_template('index.html')
-    # else:
-    #     return render_template('index.html')
+    if request.method == 'POST':
+        if str(request.form['user'] == "dodare" and str(request.form['password']) == "sdn"):
+            return render_template('signin.html')
+        else:
+            return render_template('index.html')
+    else:
+        return render_template('index.html')
 
 @app.route("/signin-check")
 def signin_check():
