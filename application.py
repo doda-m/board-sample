@@ -32,7 +32,7 @@ def checkinput():
         return render_template('signinerr.html')
 
 @app.route("/bulletin-board")
-def signin_check():
+def bulletin_board():
     signinhtml = render_template('signin.html')
     return signinhtml
 
