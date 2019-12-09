@@ -8,8 +8,8 @@ username = 'dodare'
 password = 'SDN@nitech'
 driver= '{ODBC Driver 13 for SQL Server}'
 
-cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
-cursor = cnxn.cursor()
+# cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+# cursor = cnxn.cursor()
 
 # @app.route("/", methods=['GET', 'POST'])
 @app.route("/")
