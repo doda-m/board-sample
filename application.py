@@ -22,7 +22,7 @@ def form():
     else:
         return render_template('index.html')
 
-@app.check("/signin-check")
+@app.route("/signin-check")
 def signin_check():
     signinhtml = render_template('signin.html')
     return signinhtml
