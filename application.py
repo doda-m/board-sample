@@ -19,7 +19,9 @@ def indexform():
 
 @app.route("/signin", methods=['POST'])
 def checkinput():
-    if request.form['user'] == "dodare" and request.form['password'] == "sdn":
+    cursor.execute("SELECT Password FROM SignInTable WHERE UserName='"+request.form['user']"';")
+    pass = cursor.fetchone()
+    if request.form['password'] == pass:
         return render_template('signin.html')
     else:
         return render_template('signinerr.html')
