@@ -14,13 +14,14 @@ cursor = cnxn.cursor()
 # @app.route("/", methods=['GET', 'POST'])
 @app.route("/")
 def form():
-    if request.method == 'POST':
-        if str(request.form['user'] == "dodare" and str(request.form['password']) == "sdn"):
-            return render_template('signin.html')
-        else:
-            return render_template('index.html')
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
+    # if request.method == 'POST':
+    #     if str(request.form['user'] == "dodare" and str(request.form['password']) == "sdn"):
+    #         return render_template('signin.html')
+    #     else:
+    #         return render_template('index.html')
+    # else:
+    #     return render_template('index.html')
 
 @app.route("/signin-check")
 def signin_check():
