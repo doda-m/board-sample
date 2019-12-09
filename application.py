@@ -14,10 +14,11 @@ app = Flask(__name__)
 
 # @app.route("/")
 @app.route("/", methods=['GET'])
+def indexform():
     return render_template('index.html')
 
 @app.route("/", methods=['POST'])
-def indexform():
+def checkinput():
     if request.form['user'] == "dodare" and request.form['password'] == "sdn":
         return render_template('signin.html')
     else:
