@@ -14,7 +14,7 @@ cursor = cnxn.cursor()
 
 @app.route("/")
 def home():
-    return render_template('signin.html')
+    return render_template('home.html')
 
 @app.route("/signin", methods=['GET'])
 def indexform():
