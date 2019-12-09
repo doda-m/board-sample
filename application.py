@@ -13,13 +13,13 @@ app = Flask(__name__)
 # cursor = cnxn.cursor()
 
 # @app.route("/")
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET'])
+    return render_template('index.html')
+
+@app.route("/", methods=['POST'])
 def indexform():
-    if request.method == 'POST':
-        if request.form['user'] == "dodare" and request.form['password'] == "sdn":
-            return render_template('signin.html')
-        else:
-            return render_template('index.html')
+    if request.form['user'] == "dodare" and request.form['password'] == "sdn":
+        return render_template('signin.html')
     else:
         return render_template('index.html')
 
