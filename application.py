@@ -12,7 +12,10 @@ driver = '{ODBC Driver 13 for SQL Server}'
 cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
 
-# @app.route("/")
+@app.route("/")
+def home():
+    return render_template('signin.html')
+
 @app.route("/signin", methods=['GET'])
 def indexform():
     return render_template('index.html')
