@@ -11,7 +11,8 @@ driver= '{ODBC Driver 13 for SQL Server}'
 cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
 
-@app.route("/", methods=['GET', 'POST'])
+# @app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def form():
     if request.method == 'POST':
         if str(request.form['user'] == "dodare" and str(request.form['password']) == "sdn"):
