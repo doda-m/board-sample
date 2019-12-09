@@ -24,7 +24,7 @@ def indexform():
 def checkinput():
     cursor.execute("SELECT Password FROM SignInTable WHERE UserName='"+request.form['user']+"'")
     dbresponse = cursor.fetchone()
-    if request.form['password'] == dbresponse:
+    if request.form['password'] == dbresponse[0]:
         return render_template('signin.html')
     else:
         return render_template('signinerr.html')
