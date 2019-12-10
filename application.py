@@ -78,10 +78,10 @@ def logout():
 # Bulletin board page
 @app.route("/bulletin-board")
 def bulletin_board():
-    if session['username']:
+    if session['username'] == username:
         return render_template('bulletin-board.html',user=session['username'])
     else:
-        return render_template('login.html')
+        return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
