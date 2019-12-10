@@ -21,10 +21,10 @@ dbserver = 'dodare-db.database.windows.net'
 database = 'signin'
 dbusername = 'dodare'
 password = 'SDN@nitech'
-driver = '{ODBC Driver 17 for SQL Server}'
+dbdriver = '{ODBC Driver 17 for SQL Server}'
 
 # connect database
-cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+dbserver+';PORT=1433;DATABASE='+database+';UID='+dbusername+';PWD='+ password)
+cnxn = pyodbc.connect('DRIVER='+dbdriver+';SERVER='+dbserver+';PORT=1433;DATABASE='+database+';UID='+dbusername+';PWD='+ dbpassword)
 cursor = cnxn.cursor()
 
 # def set_password(self, password):
@@ -43,7 +43,7 @@ cursor = cnxn.cursor()
 # Home page
 @app.route("/")
 def home():
-    if 'username' in session:
+    if 'userid' in session:
         return render_template('home-login.html')
     else:
         return render_template('home.html')
@@ -69,22 +69,21 @@ def logincheck():
     # Is Password correct?
     # if request.form['password'] == dbresponse[1]:
     else:
-        session['username'] = username
-        # return redirect("/")
-        return render_template('dummy.html')
+        session['userid'] = username
+        return redirect("/")
     # else:
     #     return render_template('loginerr.html')
 
 @app.route("/logout")
 def logout():
-    session.pop('username', None)
+    session.pop('userid', None)
     return redirect("/")
 
 # Bulletin board page
 @app.route("/bulletin-board")
 def bulletin_board():
-    if 'username' in session:
-        return render_template('bulletin-board.html',user=session['username'])
+    if 'userid' in session:
+        return render_template('bulletin-board.html',user=session['userid'])
     else:
         return redirect("/login")
 
