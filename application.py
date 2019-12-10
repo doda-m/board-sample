@@ -17,14 +17,14 @@ username = set()
 #     return User.get(user_id)
 
 # configure database information
-server = 'dodare-db.database.windows.net'
+dbserver = 'dodare-db.database.windows.net'
 database = 'signin'
-username = 'dodare'
+dbusername = 'dodare'
 password = 'SDN@nitech'
 driver = '{ODBC Driver 17 for SQL Server}'
 
 # connect database
-cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+dbserver+';PORT=1433;DATABASE='+database+';UID='+dbusername+';PWD='+ password)
 cursor = cnxn.cursor()
 
 # def set_password(self, password):
@@ -43,7 +43,10 @@ cursor = cnxn.cursor()
 # Home page
 @app.route("/")
 def home():
-    return render_template('home.html')
+    if session['username'] == username:
+        return render_template('home-login.html')
+    else:
+        return render_template('home.html')
 
 # Login page(GET)
 @app.route("/login", methods=['GET'])
