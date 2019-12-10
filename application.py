@@ -9,7 +9,7 @@ app = Flask(__name__)
 # login_manager = LoginManager()
 # login_manager.init_app(app)
 
-username = set()
+userid = set()
 
 # manage login user
 # @login_manager.user_loader
@@ -20,7 +20,7 @@ username = set()
 dbserver = 'dodare-db.database.windows.net'
 database = 'signin'
 dbusername = 'dodare'
-password = 'SDN@nitech'
+dbpassword = 'SDN@nitech'
 dbdriver = '{ODBC Driver 17 for SQL Server}'
 
 # connect database
