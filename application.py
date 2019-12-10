@@ -1,5 +1,6 @@
 # import flask framework
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, \
+    request, session, redirect, url_for
 # from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 # from werkzeug.security import generate_password_hash, check_password_hash
 # import driver for database
@@ -9,7 +10,7 @@ app = Flask(__name__)
 # login_manager = LoginManager()
 # login_manager.init_app(app)
 
-userid = set()
+# username = set()
 
 # manage login user
 # @login_manager.user_loader
@@ -24,7 +25,13 @@ dbpassword = 'SDN@nitech'
 dbdriver = '{ODBC Driver 17 for SQL Server}'
 
 # connect database
-cnxn = pyodbc.connect('DRIVER='+dbdriver+';SERVER='+dbserver+';PORT=1433;DATABASE='+database+';UID='+dbusername+';PWD='+ dbpassword)
+cnxn = pyodbc.connect( '\
+    DRIVER='+dbdriver+';\
+    SERVER='+dbserver+';\
+    PORT=1433;\
+    DATABASE='+database+';\
+    UID='+dbusername+';\
+    PWD='+ dbpassword)
 cursor = cnxn.cursor()
 
 # def set_password(self, password):
@@ -43,7 +50,7 @@ cursor = cnxn.cursor()
 # Home page
 @app.route("/")
 def home():
-    if 'userid' in session:
+    if 'username' in session:
         return render_template('home-login.html')
     else:
         return render_template('home.html')
@@ -61,29 +68,29 @@ def logincheck():
     # request Password against Username to database
     username = request.form['user']
     password = request.form['password']
-    cursor.execute("SELECT * FROM SignInTable WHERE UserName='"+username+"' AND Password='"+password+"'")
+    cursor.execute("\
+        SELECT * \
+        FROM SignInTable \
+        WHERE UserName='"+username+"' \
+        AND Password='"+password+"'")
     dbresponse = cursor.fetchone()
-    # Does Username exist?
+    # Does User exist?
     if dbresponse == None:
         return render_template('loginerr.html')
-    # Is Password correct?
-    # if request.form['password'] == dbresponse[1]:
     else:
-        session['userid'] = username
+        session['username'] = username
         return redirect("/")
-    # else:
-    #     return render_template('loginerr.html')
 
 @app.route("/logout")
 def logout():
-    session.pop('userid', None)
+    session.pop('username', None)
     return redirect("/")
 
 # Bulletin board page
 @app.route("/bulletin-board")
 def bulletin_board():
-    if 'userid' in session:
-        return render_template('bulletin-board.html',user=session['userid'])
+    if 'username' in session:
+        return render_template('bulletin-board.html',htmluser=session['username'])
     else:
         return redirect("/login")
 
