@@ -50,10 +50,11 @@ cursor = cnxn.cursor()
 # Home page
 @app.route("/")
 def home():
-    if 'username' in session:
-        return render_template('home-login.html')
-    else:
-        return render_template('home.html')
+    # if 'username' in session:
+    #     return render_template('home-login.html')
+    # else:
+    #     return render_template('home.html')
+    return render_template('home.html')
 
 # Login page(GET)
 @app.route("/login", methods=['GET'])
