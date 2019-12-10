@@ -6,8 +6,8 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import pyodbc
 
 app = Flask(__name__)
-login_manager = LoginManager()
-login_manager.init_app(app)
+# login_manager = LoginManager()
+# login_manager.init_app(app)
 
 username = set()
 
