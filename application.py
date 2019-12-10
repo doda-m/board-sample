@@ -65,23 +65,23 @@ def logincheck():
         return render_template('loginerr.html')
     # Is Password correct?
     if request.form['password'] == dbresponse[1]:
-        # session['username'] = username
+        session['username'] = username
         return redirect(url_for('home'))
     else:
         return render_template('loginerr.html')
 
 @app.route("/logout")
 def logout():
-    # session.pop('username', None)
+    session.pop('username', None)
     return redirect(url_for('home'))
 
 # Bulletin board page
-# @app.route("/bulletin-board")
-# def bulletin_board():
-#     if session['username']:
-#         return render_template('bulletin-board.html',user=session['username'])
-#     else:
-#         return render_template('login.html')
+@app.route("/bulletin-board")
+def bulletin_board():
+    if session['username']:
+        return render_template('bulletin-board.html',user=session['username'])
+    else:
+        return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
