@@ -69,7 +69,7 @@ def logincheck():
     # Is Password correct?
     # if request.form['password'] == dbresponse[1]:
     else:
-        session['username'] = request.form['user']
+        session['username'] = username
         # return redirect("/")
         return render_template('dummy.html')
     # else:
