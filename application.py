@@ -43,7 +43,7 @@ cursor = cnxn.cursor()
 # Home page
 @app.route("/")
 def home():
-    if session['username'] == username:
+    if 'username' in session:
         return render_template('home-login.html')
     else:
         return render_template('home.html')
@@ -81,7 +81,7 @@ def logout():
 # Bulletin board page
 @app.route("/bulletin-board")
 def bulletin_board():
-    if session['username'] == username:
+    if 'username' in session:
         return render_template('bulletin-board.html',user=session['username'])
     else:
         return redirect("/login")
