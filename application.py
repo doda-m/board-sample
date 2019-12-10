@@ -66,14 +66,14 @@ def logincheck():
     # Is Password correct?
     if request.form['password'] == dbresponse[1]:
         session['username'] = username
-        return redirect(url_for('/'))
+        return redirect("/")
     else:
         return render_template('loginerr.html')
 
 @app.route("/logout")
 def logout():
     session.pop('username', None)
-    return redirect(url_for('/'))
+    return redirect("/")
 
 # Bulletin board page
 @app.route("/bulletin-board")
@@ -81,7 +81,7 @@ def bulletin_board():
     if session['username'] == username:
         return render_template('bulletin-board.html',user=session['username'])
     else:
-        return redirect(url_for('/login'))
+        return redirect("/login")
 
 if __name__ == '__main__':
     app.run(debug=True)
