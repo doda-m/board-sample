@@ -1,7 +1,7 @@
 # import flask framework
 from flask import Flask, render_template, request, session, redirect, url_for
 # from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
+# from werkzeug.security import generate_password_hash, check_password_hash
 # import driver for database
 import pyodbc
 
@@ -12,9 +12,9 @@ login_manager.init_app(app)
 username = set()
 
 # manage login user
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return User.get(user_id)
 
 # configure database information
 server = 'dodare-db.database.windows.net'
@@ -27,11 +27,11 @@ driver = '{ODBC Driver 17 for SQL Server}'
 cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
 
-def set_password(self, password):
-    self.password_hash = generate_password_hash(password)
+# def set_password(self, password):
+#     self.password_hash = generate_password_hash(password)
 
-def check_password(self, password):
-    return check_password_hash(self.password_hash, password)
+# def check_password(self, password):
+#     return check_password_hash(self.password_hash, password)
 
 
 # class User(UserMixin):
