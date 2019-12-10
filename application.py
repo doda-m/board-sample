@@ -67,11 +67,12 @@ def logincheck():
     if dbresponse == None:
         return render_template('loginerr.html')
     # Is Password correct?
-    if request.form['password'] == dbresponse[1]:
+    # if request.form['password'] == dbresponse[1]:
+    else:
         session['username'] = username
         return redirect("/")
-    else:
-        return render_template('loginerr.html')
+    # else:
+    #     return render_template('loginerr.html')
 
 @app.route("/logout")
 def logout():
