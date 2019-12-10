@@ -47,14 +47,14 @@ def home():
 
 # Login page(GET)
 @app.route("/login", methods=['GET'])
-def indexform():
+def login():
     return render_template('login.html')
 
 # Login page(POST)
 # If user submit Username and Password,
 # server check it.
 @app.route("/login", methods=['POST'])
-def checkinput():
+def logincheck():
     # request Password against Username to database
     username = request.form['user']
     password = request.form['password']
@@ -65,18 +65,23 @@ def checkinput():
         return render_template('loginerr.html')
     # Is Password correct?
     if request.form['password'] == dbresponse[1]:
-        session['username'] = username
-        return redirect(url_for('/'))
+        # session['username'] = username
+        return redirect(url_for('home'))
     else:
         return render_template('loginerr.html')
 
+@app.route("/logout")
+def logout():
+    # session.pop('username', None)
+    return redirect(url_for('home'))
+
 # Bulletin board page
-@app.route("/bulletin-board")
-def bulletin_board():
-    if session['username']:
-        return render_template('bulletin-board.html',user=session['username'])
-    else:
-        return render_template('login.html')
+# @app.route("/bulletin-board")
+# def bulletin_board():
+#     if session['username']:
+#         return render_template('bulletin-board.html',user=session['username'])
+#     else:
+#         return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
