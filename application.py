@@ -36,9 +36,10 @@ cursor = cnxn.cursor()
 @app.route("/")
 def home():
 	if 'username' in session:
-		return render_template('home.html',state="Login")
+		return render_template('home.html',\
+			state="Login",user=session['username'])
 	else:
-		return render_template('home.html',state="Logout")
+		return render_template('home.html', state="Logout")
 	# return render_template('home.html')
 
 # Login page(GET)
@@ -47,7 +48,7 @@ def login():
 	if 'username' in session:
 		flash("You already login.")
 		return redirect("/")
-	return render_template('login.html')
+	return render_template('login.html',state="Logout")
 
 # Login page(POST)
 # If user submit Username and Password,
@@ -67,7 +68,7 @@ def logincheck():
 	# Does User exist?
 	if dbresponse == None:
 		flash("Please check your Username or Password.")
-		return render_template('loginerr.html')
+		return render_template('loginerr.html',state="Logout")
 	else:
 		session['username'] = username
 		return redirect("/")
@@ -81,7 +82,8 @@ def logout():
 @app.route("/bulletin-board")
 def bulletin_board():
 	if 'username' in session:
-		return render_template('bulletin-board.html',user=session['username'])
+		return render_template('bulletin-board.html',\
+			state="Login", user=session['username'])
 	else:
 		return redirect("/login")
 	

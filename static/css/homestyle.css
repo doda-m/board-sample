@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
 
 /*PC・タブレット・スマホ(全端末)共通設定
 ------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -11,7 +12,7 @@ body {
 	padding: 0px;
 	-webkit-text-size-adjust: none;
 	color: #666;	/*全体の文字色*/
-	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", sans-serif;
 	font-size: 16px;	/*文字サイズ*/
 	line-height: 2;		/*行間*/
 	background: #fff;	/*背景色*/
@@ -253,7 +254,7 @@ form {padding: 0 1.5em;}
 
 .form-item input {background: #fafafa;border: none;
 	border-bottom: 2px solid #e9e9e9;color: #666;
-	font-family: 'Open Sans', sans-serif; font-size: 1em;
+	font-family: 'Open Sans', sans-serif;font-size: 1em;
 	height: 50px;transition: border-color 0.3s;width: 100%;
 }
 
