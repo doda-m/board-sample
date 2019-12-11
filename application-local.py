@@ -1,7 +1,6 @@
 # import flask framework
 from flask import Flask, render_template,\
-	request, session, redirect, url_for,\
-	flash
+	request, session, redirect, url_for
 from flask_sslify import SSLify
 
 import os
@@ -24,14 +23,14 @@ dbpassword = 'SDN@nitech'
 dbdriver = '{ODBC Driver 17 for SQL Server}'
 
 # connect database
-cnxn = pyodbc.connect('\
-	DRIVER='+dbdriver+';\
-	SERVER='+dbserver+';\
-	PORT=1433;\
-	DATABASE='+database+';\
-	UID='+dbusername+';\
-	PWD='+ dbpassword)
-cursor = cnxn.cursor()
+# cnxn = pyodbc.connect('\
+# 	DRIVER='+dbdriver+';\
+# 	SERVER='+dbserver+';\
+# 	PORT=1433;\
+# 	DATABASE='+database+';\
+# 	UID='+dbusername+';\
+# 	PWD='+ dbpassword)
+# cursor = cnxn.cursor()
 
 # Home page
 @app.route("/")
@@ -52,19 +51,16 @@ def login():
 # server check it.
 @app.route("/login", methods=['POST'])
 def logincheck():
-	if 'username' in session:
-		flash("You already login.")
-		return redirect("/")
 	# request Password against Username to database
 	username = request.form['user']
 	passwd = request.form['password']
-	cursor.execute("\
-		SELECT * \
-		FROM SignInTable \
-		WHERE UserName='"+username+"' \
-		AND Password='"+passwd+"'") 
-	dbresponse = cursor.fetchone()
-	# dbresponse = True
+	# cursor.execute("\
+	# 	SELECT * \
+	# 	FROM SignInTable \
+	# 	WHERE UserName='"+username+"' \
+	# 	AND Password='"+passwd+"'") 
+	# dbresponse = cursor.fetchone()
+	dbresponse = True
 	# Does User exist?
 	if dbresponse == None:
 		return render_template('loginerr.html')
