@@ -13,7 +13,7 @@ import pyodbc
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-sslify = SSLify(app)
+# sslify = SSLify(app)
 # username = set()
 
 # configure database information
