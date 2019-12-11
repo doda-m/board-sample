@@ -16,12 +16,14 @@ body {
 	line-height: 2;		/*行間*/
 	background: #fff;	/*背景色*/
 }
-h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,select,input,textarea {margin: 0px;padding: 0px;font-size: 100%;font-weight: normal;}
+h1,h2,h3,h4,p,ul,ol,li,dl,dt,dd,form,figure,form,select,input,textarea {margin: 0px;padding: 0px;font-size: 100%;font-weight: normal;}
 ul {list-style-type: none;}
 ol {padding-left: 40px;padding-bottom: 15px;}
 img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
 table {border-collapse:collapse;font-size: 100%;border-spacing: 0;}
 iframe {width: 100%;}
+
+h5 {color: #e6823a}
 
 /*リンク（全般）設定
 ---------------------------------------------------------------------------*/
@@ -81,6 +83,10 @@ header {
 #menubar li a:hover {
 	color: #d08047;	/*文字色*/
 	border-bottom: 4px solid #d08047;	/*下線の幅、線種、色*/
+}
+
+#menubar li a div {
+	color: #e6823a;
 }
 
 /*コンテンツ（見出しバーや文字などが入っているブロック）
