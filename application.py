@@ -44,6 +44,9 @@ def home():
 # Login page(GET)
 @app.route("/login", methods=['GET'])
 def login():
+	if 'username' in session:
+		flash("You already login.")
+		return redirect("/")
 	return render_template('login.html')
 
 # Login page(POST)
@@ -51,10 +54,6 @@ def login():
 # server check it.
 @app.route("/login", methods=['POST'])
 def logincheck():
-	# username = set()
-	if 'username' in session:
-		flash("You already login.")
-		return redirect("/")
 	# request Password against Username to database
 	username = request.form['user']
 	passwd = request.form['password']
@@ -67,6 +66,7 @@ def logincheck():
 	# dbresponse = True
 	# Does User exist?
 	if dbresponse == None:
+		flash("Please check your Username or Password.")
 		return render_template('loginerr.html')
 	else:
 		session['username'] = username
