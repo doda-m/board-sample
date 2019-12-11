@@ -4,6 +4,7 @@ from flask import Flask, render_template,\
 	flash
 from flask_sslify import SSLify
 
+import datetime
 import os
 # from flask_login import LoginManager, login_user, \
 #   logout_user, login_required, UserMixin
@@ -61,8 +62,9 @@ def logincheck():
 	cursor.execute("\
 		SELECT * \
 		FROM SignInTable \
-		WHERE UserName='"+username+"' \
-		AND Password='"+passwd+"'") 
+		WHERE UserName='%s' \
+		AND Password='%s'",\
+		username, passwd) 
 	dbresponse = cursor.fetchone()
 	# dbresponse = True
 	# Does User exist?
@@ -91,8 +93,16 @@ def bulletin_board():
 @app.route("/bulletin-board",methods=['POST'])
 def bulletin_board_post():
 	if 'username' in session:
-		return render_template('bulletin-board.html',\
-			state="Login", user=session['username'])
+		postmsg = request.form['content'].get()
+		now = datetime.datetime.today()
+		postdate = now.date()
+		posttime = now.time()
+		cursor.execute("\
+			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
+			VALUES ('%s','%s','%s','%s')",\
+			session['username'], postdate, posttime, postmsg\
+		)
+		return redirect("/bulletin-board")
 	else:
 		return redirect("/login")
 

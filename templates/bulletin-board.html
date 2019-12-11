@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>DDR-Board-Home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="html">
-<meta name="keywords" content="bulletin boad,dodare">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/static/css/homestyle.css">
-<script type="text/javascript" src="../static/js/checkform.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>DDR-Board-BulletinBoard</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/static/css/homestyle.css">
+	<!-- <script type="text/javascript" src="/static/js/checkform.js"></script> -->
 </head>
 
 <body>
@@ -44,7 +43,7 @@
 </nav>
 
 <div class="row">
-	<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+	<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 		<div id="contents">
 			<section id="new">
 				<h2>Bulletin-boad ({{date}})</h2>
@@ -52,7 +51,7 @@
 			</section>
 		</div>
 	</div>
-	<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+	<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 		{% if state == "Login" %}
 		<form method="POST" id="messege" name="messege">
 			<font size=5>{{user}}</font><br>
@@ -63,7 +62,7 @@
 			</div>
 		</form>
 		{% else %}
-		<font size=5>Let's post</font><br>
+		<center><font size=5>Let's post</font><br></center>
 		<div class="button-post">
 			<a href="https://dodare-board.azurewebsites.net/login">
 				<input type="button" class="button" name="" value="Login">
