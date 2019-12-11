@@ -2,7 +2,7 @@
 from flask import Flask, render_template,\
 	request, session, redirect, url_for,\
 	flash
-# from flask_sslify import SSLify
+from flask_sslify import SSLify
 
 import os
 # from flask_login import LoginManager, login_user, \
@@ -13,8 +13,7 @@ import pyodbc
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-# sslify = SSLify(app)
-# username = set()
+sslify = SSLify(app)
 
 # configure database information
 dbserver = 'dodare-db.database.windows.net'
@@ -52,6 +51,7 @@ def login():
 # server check it.
 @app.route("/login", methods=['POST'])
 def logincheck():
+	# username = set()
 	if 'username' in session:
 		flash("You already login.")
 		return redirect("/")
