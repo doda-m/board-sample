@@ -2,7 +2,7 @@
 from flask import Flask, render_template,\
 	request, session, redirect, url_for,\
 	flash
-from flask_sslify import SSLify
+# from flask_sslify import SSLify
 
 import os
 # from flask_login import LoginManager, login_user, \
