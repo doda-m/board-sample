@@ -7,24 +7,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="html">
 <meta name="keywords" content="bulletin boad,dodare">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="/static/css/homestyle.css">
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script type="text/javascript" src="../static/js/checkform.js"></script>
 </head>
 
 <body>
 
+<div style="position: absolute; right: 70px; top: 40px">
 {% if state == "Login" %}
-<div style="position: absolute; right: 70px; top: 40px">
 	<font size=5>{{user}}</font>
-</div>
 {% else %}
-<div style="position: absolute; right: 70px; top: 40px">
 	<font size=5>Guest</font>
-</div>
 {% endif %}
+</div>
 
 <div id="container">
 
@@ -38,13 +35,48 @@
 <li><a href="https://dodare-board.azurewebsites.net/">Home</a></li>
 <li><a href="https://dodare-board.azurewebsites.net/about">About</a></li>
 <li><a href="https://dodare-board.azurewebsites.net/bulletin-board">>>Bulletin Board</a></li>
+{% if state == "Login" %}
 <li><a href="https://dodare-board.azurewebsites.net/logout">Logout</a></li>
+{% else %}
+<li><a href="https://dodare-board.azurewebsites.net/login">Login</a></li>
+{% endif %
 </ul>
 </nav>
 
-<div id="contents">
+<div class="row">
+	<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+		<div id="contents">
+			<section id="new">
+				<h2>Bulletin-boad ({{date}})</h2>
+				I'm creating now...
+			</section>
+		</div>
+	</div>
+	<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+		{% if state == "Login" %}
+		<form method="POST" id="messege" name="messege">
+			<font size=5>{{user}}</font><br>
+			<textarea id="content" name="content" cols="50" rows="6" maxlength="200"\
+				placeholder="up to 200" required="required"></textarea><br><br>
+			<div class="button-post">
+				<input type="button" onclick="submit();" class="button" name="btn1" value="Post">
+			</div>
+		</form>
+		{% else %}
+		<font size=5>Let's post</font><br>
+		<div class="button-post">
+			<a href="https://dodare-board.azurewebsites.net/login">
+				<input type="button" class="button" name="" value="Login">
+			</a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+<br>
 
+<div id="contents">
 <section id="new">
+<h2>Bulletin-boad</h2>
     I'm creating now...
 </section>
 

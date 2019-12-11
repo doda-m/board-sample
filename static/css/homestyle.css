@@ -268,6 +268,13 @@ form {padding: 0 1.5em;}
 	text-transform: uppercase;transition: background 0.3s ease-in-out;width: 100%;
 }
 
+.button-post {margin: 0 0 0;width: 100%;}
+.button-post .button {background: #666;border: none;color: #fff;
+	cursor: pointer;height: 40px;font-family: 'Open Sans', sans-serif;
+	font-size: 1.2em;letter-spacing: 0.05em;text-align: center;
+	text-transform: uppercase;transition: background 0.3s ease-in-out;width: 50%;
+}
+
 .button:hover {background: #d08047;}
 
 .form-footer {font-size: 1em;padding: 2em 0;text-align: center;}

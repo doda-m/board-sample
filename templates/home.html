@@ -15,15 +15,14 @@
 </head>
 
 <body>
+
+<div style="position: absolute; right: 70px; top: 40px">
 {% if state == "Login" %}
-<div style="position: absolute; right: 70px; top: 40px">
-    <font size=5>{{user}}</font>
-</div>
+	<font size=5>{{user}}</font>
 {% else %}
-<div style="position: absolute; right: 70px; top: 40px">
-    <font size=5>Guest</font>
-</div>
+	<font size=5>Guest</font>
 {% endif %}
+</div>
 
 <div id="container">
 
@@ -52,14 +51,15 @@
 <dl>
 <dt>2019/12/11</dt>
 <dd>Fix the session function, you can login!</dd>
+<dd>Modify homepage design</dd>
 <dt>2019/12/10</dt>
 <dd>Happen a login error, fixing bug in the session function</dd>
 <dt>2019/12/9</dt>
-<dd>Create a homepage part</dd>
+<dd>Create the homepage</dd>
 <dt>2019/12/8</dt>
 <dd>Implement login function</dd>
 <dt>2019/12/7</dt>
-<dd>Deploy a web-server and a database-server, set a sample page</dd>
+<dd>Deploy the web-server and the database-server, set the sample page</dd>
 </dl>
 </section>
 

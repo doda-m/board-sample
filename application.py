@@ -79,13 +79,24 @@ def logout():
 	return redirect("/")
 
 # Bulletin board page
-@app.route("/bulletin-board")
+@app.route("/bulletin-board",methods=['GET'])
 def bulletin_board():
 	if 'username' in session:
 		return render_template('bulletin-board.html',\
 			state="Login", user=session['username'])
 	else:
+		return render_template('bulletin-board.html',\
+			state="Logout")
+
+@app.route("/bulletin-board",methods=['POST'])
+def bulletin_board_post():
+	if 'username' in session:
+		return render_template('bulletin-board.html',\
+			state="Login", user=session['username'])
+	else:
 		return redirect("/login")
+
+
 	
 if __name__ == '__main__':
 	app.run(debug=True)
