@@ -62,9 +62,9 @@ def logincheck():
 	cursor.execute("\
 		SELECT * \
 		FROM SignInTable \
-		WHERE UserName='%s' \
-		AND Password='%s'",\
-		username, passwd) 
+		WHERE UserName='?' \
+		AND Password='?'",\
+		(username, passwd)) 
 	dbresponse = cursor.fetchone()
 	# dbresponse = True
 	# Does User exist?
@@ -100,7 +100,7 @@ def bulletin_board_post():
 		cursor.execute("\
 			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
 			VALUES ('%s','%s','%s','%s')",\
-			session['username'], postdate, posttime, postmsg\
+			(session['username'], postdate, posttime, postmsg)\
 		)
 		return redirect("/bulletin-board")
 	else:
