@@ -62,8 +62,8 @@ def logincheck():
 	cursor.execute("\
 		SELECT * \
 		FROM SignInTable \
-		WHERE UserName='?' \
-		AND Password='?'", username, passwd) 
+		WHERE UserName=? \
+		AND Password=?", username, passwd) 
 	dbresponse = cursor.fetchone()
 	# dbresponse = True
 	# Does User exist?
