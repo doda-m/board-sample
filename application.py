@@ -1,21 +1,17 @@
 # import flask framework
-from flask import Flask, render_template, \
+from flask import Flask, render_template,\
     request, session, redirect, url_for
-# from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+
+import os
+# from flask_login import LoginManager, login_user, \
+#   logout_user, login_required, UserMixin
 # from werkzeug.security import generate_password_hash, check_password_hash
 # import driver for database
 import pyodbc
 
 app = Flask(__name__)
-# login_manager = LoginManager()
-# login_manager.init_app(app)
-
+app.secret_key = os.urandom(24)
 # username = set()
-
-# manage login user
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.get(user_id)
 
 # configure database information
 dbserver = 'dodare-db.database.windows.net'
@@ -34,27 +30,14 @@ cnxn = pyodbc.connect( '\
     PWD='+ dbpassword)
 cursor = cnxn.cursor()
 
-# def set_password(self, password):
-#     self.password_hash = generate_password_hash(password)
-
-# def check_password(self, password):
-#     return check_password_hash(self.password_hash, password)
-
-
-# class User(UserMixin):
-#     def __init__(self, id, username, password):
-#         self.id = id
-#         self.username = username
-#         self.passward = password
-
 # Home page
 @app.route("/")
 def home():
-    # if 'username' in session:
-    #     return render_template('home-login.html')
-    # else:
-    #     return render_template('home.html')
-    return render_template('home.html')
+    if 'username' in session:
+        return render_template('home-login.html')
+    else:
+        return render_template('home.html')
+    # return render_template('home.html')
 
 # Login page(GET)
 @app.route("/login", methods=['GET'])
@@ -68,13 +51,14 @@ def login():
 def logincheck():
     # request Password against Username to database
     username = request.form['user']
-    password = request.form['password']
-    cursor.execute("\
+    passwd = request.form['password']
+   cursor.execute("\
         SELECT * \
         FROM SignInTable \
         WHERE UserName='"+username+"' \
-        AND Password='"+password+"'")
+        AND Password='"+passwd+"'") 
     dbresponse = cursor.fetchone()
+    # dbresponse = True
     # Does User exist?
     if dbresponse == None:
         return render_template('loginerr.html')
@@ -91,7 +75,7 @@ def logout():
 @app.route("/bulletin-board")
 def bulletin_board():
     if 'username' in session:
-        return render_template('bulletin-board.html',htmluser=session['username'])
+        return render_template('bulletin-board.html',user=session['username'])
     else:
         return redirect("/login")
 
