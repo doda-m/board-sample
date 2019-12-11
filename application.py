@@ -21,7 +21,7 @@ dbpassword = 'SDN@nitech'
 dbdriver = '{ODBC Driver 17 for SQL Server}'
 
 # connect database
-cnxn = pyodbc.connect( '\
+cnxn = pyodbc.connect('\
     DRIVER='+dbdriver+';\
     SERVER='+dbserver+';\
     PORT=1433;\
@@ -52,7 +52,7 @@ def logincheck():
     # request Password against Username to database
     username = request.form['user']
     passwd = request.form['password']
-   cursor.execute("\
+    cursor.execute("\
         SELECT * \
         FROM SignInTable \
         WHERE UserName='"+username+"' \
