@@ -47,7 +47,7 @@
 		<div id="contents">
 			<section id="new">
 				<h2>Bulletin-boad ({{date}})</h2>
-				{% for msg in msgs%}
+				{% for msg in msgs|reverse %}
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="panel-title">

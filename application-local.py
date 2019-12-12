@@ -1,8 +1,10 @@
 # import flask framework
 from flask import Flask, render_template,\
-	request, session, redirect, url_for
+	request, session, redirect, url_for,\
+	flash, Markup
 from flask_sslify import SSLify
 
+import datetime
 import os
 # from flask_login import LoginManager, login_user, \
 #   logout_user, login_required, UserMixin
@@ -73,13 +75,41 @@ def logout():
 	session.pop('username', None)
 	return redirect("/")
 
+
 # Bulletin board page
-@app.route("/bulletin-board")
+@app.route("/bulletin-board",methods=['GET'])
 def bulletin_board():
 	if 'username' in session:
-		return render_template('bulletin-board.html',user=session['username'])
+		# for row in rows:
+			# Markup(row.Messege.replace('\r\n', '<br>'))
+			# row.Messege.replace('\r\n', '<br>')
+			# row.Messege.replace('\r\n', '<br>')
+			# row.Messege.replace('\n', '<br>')
+			# row.Messege.replace('\r', '<br>')
+		return render_template('bulletin-board.html',\
+			state="Login", user=session['username'],\
+			# msgs=rows, date=datetime.date.today())
+			date=datetime.date.today())
+	else:
+		return render_template('bulletin-board.html',\
+			state="Logout")
+
+@app.route("/bulletin-board",methods=['POST'])
+def bulletin_board_post():
+	if 'username' in session:
+		postmsg = request.form.get('content', None)
+		now = datetime.datetime.today()
+		postdate = now.date()
+		posttime = now.time()
+		print(postmsg)
+		# postmsg.replace('\n', '<br>')
+		postmsg = Markup(postmsg.replace('\r\n', '<br>'))
+		print(postmsg)
+		# return redirect("/bulletin-board")
+		return render_template('bulletin-board.html',\
+			state="Login", user=session['username'],date=postmsg)
 	else:
 		return redirect("/login")
-	
+
 if __name__ == '__main__':
 	app.run(debug=True)

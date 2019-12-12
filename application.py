@@ -93,8 +93,7 @@ def bulletin_board():
 			# Markup(row.Messege.replace('\n\r', '<br>'))
 			# Markup(row.Messege.replace('\r', '<br>'))
 			# Markup(row.Messege.replace('\n', '<br>'))
-			row.Messege.replace('\n', '<br>')
-			row.Messege.replace('\r', '<br>')
+			row.Messege = Markup(row.Messege.replace('\r\n', '<br>'))
 		return render_template('bulletin-board.html',\
 			state="Login", user=session['username'],\
 			msgs=rows, date=datetime.date.today())
