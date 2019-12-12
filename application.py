@@ -82,30 +82,31 @@ def logout():
 @app.route("/bulletin-board",methods=['GET'])
 def bulletin_board():
 	today = datetime.date.today()
-	if 'username' in session:
-		cursor.execute("\
-			SELECT * FROM PostsTable\
-			WHERE Date=?",\
-			today
-		)
-		tdposts = cursor.fetchall()
-		for row in tdposts:
-			row.Messege = Markup(row.Messege.replace('\r\n', '<br>'))
+	cursor.execute("\
+		SELECT * FROM PostsTable\
+		WHERE Date=?",\
+		today
+	)
+	tdposts = cursor.fetchall()
+	for row in tdposts:
+		row.Messege = Markup(row.Messege.replace('\r\n', '<br>'))
 
-		cursor.execute("\
-			SELECT * FROM PostsTable\
-			WHERE Date<?",\
-			today
-		)
-		hstposts = cursor.fetchall()
-		for row in hstposts:
-			row.Messege = Markup(row.Messege.replace('\r\n', '<br>'))
+	cursor.execute("\
+		SELECT * FROM PostsTable\
+		WHERE Date<?",\
+		today
+	)
+	hstposts = cursor.fetchall()
+	for row in hstposts:
+		row.Messege = Markup(row.Messege.replace('\r\n', '<br>'))
+	if 'username' in session:
 		return render_template('bulletin-board.html', state="Login",\
 			user=session['username'], msgs=tdposts, historymsgs=hstposts,\
 			date=datetime.date.today())
 	else:
-		return render_template('bulletin-board.html',\
-			state="Logout")
+		return render_template('bulletin-board.html', state="Logout",\
+			msgs=tdposts, historymsgs=hstposts,\
+			date=datetime.date.today())
 
 @app.route("/bulletin-board",methods=['POST'])
 def bulletin_board_post():
