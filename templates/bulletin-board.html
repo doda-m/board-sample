@@ -63,22 +63,25 @@
 	</div>
 	<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 		{% if state == "Login" %}
+		<center>
 		<form method="POST" id="messege" name="messege">
 			<font size=5>{{user}}</font><br>
-			<textarea id="content" name="content" cols="50" rows="6" maxlength="200"\
+			<textarea id="content" name="content" cols="40" rows="6" maxlength="200"\
 				placeholder="up to 200" required="required"></textarea><br><br>
 			<div class="button-post">
 				<input type="button" onclick="submit();"\
 					class="button" name="insert" value="Post">
 			</div>
 		</form>
+		<center>
 		{% else %}
-		<center><font size=5>Let's post</font><br></center>
+		<center><font size=5>Let's post</font><br>
 		<div class="button-post">
 			<a href="https://dodare-board.azurewebsites.net/login">
 				<input type="button" class="button" name="" value="Login">
 			</a>
 		</div>
+		</center>
 		{% endif %}
 	</div>
 </div>
