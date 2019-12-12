@@ -100,7 +100,7 @@ def bulletin_board_post():
 		cursor.execute("\
 			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
 			VALUES (?,?,?,?)",\
-			(session['username'], postdate, posttime, postmsg)\
+			session['username'], postdate, posttime, postmsg\
 		)
 		return redirect("/bulletin-board")
 	else:
