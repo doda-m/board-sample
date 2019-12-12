@@ -93,19 +93,19 @@ def bulletin_board():
 @app.route("/bulletin-board",methods=['POST'])
 def bulletin_board_post():
 	if 'username' in session:
-		postmsg = request.form['content'].get()
-		# now = datetime.datetime.today()
-		# postdate = now.date()
-		# posttime = now.time()
-		cursor.execute("\
-			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
-			VALUES('dodare','2019-12-12','12:12:12','Hello')"\
-		)
+		postmsg = request.form.get('content', None)
+		now = datetime.datetime.today()
+		postdate = now.date()
+		posttime = now.time()
 		# cursor.execute("\
 		# 	INSERT INTO PostsTable(UserName, Date, Time, Messege)\
-		# 	VALUES (?,'2019-12-12','12:12:12',?)",\
-		# 	session['username'], postmsg\
+		# 	VALUES('dodare','2019-12-12','12:12:12','Hello')"\
 		# )
+		cursor.execute("\
+			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
+			VALUES (?,?,?,?)",\
+			session['username'], postdate, posttime, postmsg\
+		)
 		return redirect("/bulletin-board")
 	else:
 		return redirect("/login")
