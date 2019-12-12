@@ -90,8 +90,10 @@ def bulletin_board():
 		rows = cursor.fetchall()
 		for row in rows:
 			Markup(row.Messege.replace('\r', '<br>'))
+			Markup(row.Messege.replace('\n', '<br>'))
 		return render_template('bulletin-board.html',\
-			state="Login", user=session['username'], msgs=rows)
+			state="Login", user=session['username'],\
+			msgs=rows, date=datetime.date.today())
 	else:
 		return render_template('bulletin-board.html',\
 			state="Logout")
@@ -106,7 +108,7 @@ def bulletin_board_post():
 		cursor.execute("\
 			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
 			VALUES (?,?,?,?)",\
-			session['username'], now, posttime, postmsg\
+			session['username'], postdate, posttime, postmsg\
 		)
 		cnxn.commit()
 		return redirect("/bulletin-board")
