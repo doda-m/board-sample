@@ -99,9 +99,13 @@ def bulletin_board_post():
 		# posttime = now.time()
 		cursor.execute("\
 			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
-			VALUES (?,'2019-12-12','12:12:12',?)",\
-			session['username'], postmsg\
+			VALUES('dodare','2019-12-12','12:12:12','Hello')"\
 		)
+		# cursor.execute("\
+		# 	INSERT INTO PostsTable(UserName, Date, Time, Messege)\
+		# 	VALUES (?,'2019-12-12','12:12:12',?)",\
+		# 	session['username'], postmsg\
+		# )
 		return redirect("/bulletin-board")
 	else:
 		return redirect("/login")
