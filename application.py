@@ -106,6 +106,7 @@ def bulletin_board_post():
 			VALUES (?,?,?,?)",\
 			session['username'], postdate, posttime, postmsg\
 		)
+		cnxn.commit()
 		return redirect("/bulletin-board")
 	else:
 		return redirect("/login")
