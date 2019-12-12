@@ -84,8 +84,12 @@ def logout():
 @app.route("/bulletin-board",methods=['GET'])
 def bulletin_board():
 	if 'username' in session:
+		cursor.execute("\
+		SELECT * FROM PostsTable"\
+		)
+		rows = cursor.fetchall()
 		return render_template('bulletin-board.html',\
-			state="Login", user=session['username'])
+			state="Login", user=session['username'], msgs=rows)
 	else:
 		return render_template('bulletin-board.html',\
 			state="Logout")
@@ -97,14 +101,10 @@ def bulletin_board_post():
 		now = datetime.datetime.today()
 		postdate = now.date()
 		posttime = now.time()
-		# cursor.execute("\
-		# 	INSERT INTO PostsTable(UserName, Date, Time, Messege)\
-		# 	VALUES('dodare','2019-12-12','12:12:12','Hello')"\
-		# )
 		cursor.execute("\
 			INSERT INTO PostsTable(UserName, Date, Time, Messege)\
 			VALUES (?,?,?,?)",\
-			session['username'], postdate, posttime, postmsg\
+			session['username'], now, posttime, postmsg\
 		)
 		cnxn.commit()
 		return redirect("/bulletin-board")

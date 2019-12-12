@@ -47,6 +47,11 @@
 		<div id="contents">
 			<section id="new">
 				<h2>Bulletin-boad ({{date}})</h2>
+				{% for msg in msgs%}
+				<dt>{{msg.Date}}</dt>
+				<dt>{{msg.UserName}}</dt>
+				<dd>{{msg.Messege}}</dd>
+				{%  endfor %}
 				I'm creating now...
 			</section>
 		</div>
