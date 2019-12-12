@@ -94,6 +94,7 @@ def bulletin_board():
 			# Markup(row.Messege.replace('\r', '<br>'))
 			# Markup(row.Messege.replace('\n', '<br>'))
 			row.Messege.replace('\n', '<br>')
+			row.Messege.replace('\r', '<br>')
 		return render_template('bulletin-board.html',\
 			state="Login", user=session['username'],\
 			msgs=rows, date=datetime.date.today())
@@ -104,7 +105,7 @@ def bulletin_board():
 @app.route("/bulletin-board",methods=['POST'])
 def bulletin_board_post():
 	if 'username' in session:
-		postmsg = request.form.get('content', None)
+		postmsg = str(request.form.get('content', None))
 		now = datetime.datetime.today()
 		postdate = now.date()
 		posttime = now.time()
