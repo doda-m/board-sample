@@ -58,7 +58,6 @@
 					</div>
 				</div>
 				{% endfor %}
-				I'm creating now...
 			</section>
 		</div>
 	</div>
@@ -87,8 +86,22 @@
 
 <div id="contents">
 <section id="new">
-<h2>Bulletin-boad</h2>
-    I'm creating now...
+<h2>History</h2>
+{% for msg in historymsgs|reverse %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<font size="4">{{historymsg.UserName}}</font>
+			: {{historymsg.Date}} {{historymsg.Time}}
+		</div>
+	</div>
+	<div class="panel-body">
+		{{historymsg.Messege}}
+	</div>
+</div>
+{% endfor %}
+
+
 </section>
 
 </div>

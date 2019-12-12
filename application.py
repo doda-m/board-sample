@@ -47,7 +47,6 @@ def home():
 @app.route("/login", methods=['GET'])
 def login():
 	if 'username' in session:
-		flash("You already login.")
 		return redirect("/")
 	return render_template('login.html',state="Logout")
 
@@ -69,7 +68,6 @@ def logincheck():
 	# dbresponse = True
 	# Does User exist?
 	if dbresponse == None:
-		flash("Please check your Username or Password.")
 		return render_template('loginerr.html',state="Logout")
 	else:
 		session['username'] = username
@@ -83,20 +81,28 @@ def logout():
 # Bulletin board page
 @app.route("/bulletin-board",methods=['GET'])
 def bulletin_board():
+	today = datetime.date.today()
 	if 'username' in session:
 		cursor.execute("\
-		SELECT * FROM PostsTable"\
+			SELECT * FROM PostsTable\
+			WHERE Date=?",\
+			today
 		)
-		rows = cursor.fetchall()
-		for row in rows:
-			# Markup(row.Messege.replace('\r\n', '<br>'))
-			# Markup(row.Messege.replace('\n\r', '<br>'))
-			# Markup(row.Messege.replace('\r', '<br>'))
-			# Markup(row.Messege.replace('\n', '<br>'))
+		tdposts = cursor.fetchall()
+		for row in tdposts:
 			row.Messege = Markup(row.Messege.replace('\r\n', '<br>'))
-		return render_template('bulletin-board.html',\
-			state="Login", user=session['username'],\
-			msgs=rows, date=datetime.date.today())
+
+		cursor.execute("\
+			SELECT * FROM PostsTable\
+			WHERE Date<?",\
+			today
+		)
+		hstposts = cursor.fetchall()
+		for row in hstposts:
+			row.Messege = Markup(row.Messege.replace('\r\n', '<br>'))
+		return render_template('bulletin-board.html', state="Login",\
+			user=session['username'], msgs=tdposts, historymsgs=hstposts,\
+			date=datetime.date.today())
 	else:
 		return render_template('bulletin-board.html',\
 			state="Logout")
