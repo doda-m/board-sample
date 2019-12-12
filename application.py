@@ -1,7 +1,7 @@
 # import flask framework
 from flask import Flask, render_template,\
 	request, session, redirect, url_for,\
-	flash
+	flash, Markup
 from flask_sslify import SSLify
 
 import datetime
@@ -88,6 +88,8 @@ def bulletin_board():
 		SELECT * FROM PostsTable"\
 		)
 		rows = cursor.fetchall()
+		for row in rows:
+			Markup(row.Messege.replace('\r', '<br>'))
 		return render_template('bulletin-board.html',\
 			state="Login", user=session['username'], msgs=rows)
 	else:

@@ -48,10 +48,15 @@
 			<section id="new">
 				<h2>Bulletin-boad ({{date}})</h2>
 				{% for msg in msgs%}
-				<dt>{{msg.Date}}</dt>
-				<dt>{{msg.UserName}}</dt>
-				<dd>{{msg.Messege}}</dd>
-				{%  endfor %}
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">{{msg.UserName}}: {{msg.Date}} {{msg.Time}}</h3>
+					</div>
+					<div class="panel-body">
+						{{msg.Messege}}
+					</div>
+				</div>
+				{% endfor %}
 				I'm creating now...
 			</section>
 		</div>
