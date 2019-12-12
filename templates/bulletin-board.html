@@ -55,10 +55,11 @@
 		{% if state == "Login" %}
 		<form method="POST" id="messege" name="messege">
 			<font size=5>{{user}}</font><br>
-			<textarea id="content" name="content" cols="50" rows="6" maxlength="200"\
+			<textarea id="content" name="content" cols="40" rows="6" maxlength="200"\
 				placeholder="up to 200" required="required"></textarea><br><br>
 			<div class="button-post">
-				<input type="button" onclick="submit();" class="button" name="btn1" value="Post">
+				<!-- <input type="button" onclick="submit();"\ -->
+				<input type="submit" class="button" name="insert" value="insert">
 			</div>
 		</form>
 		{% else %}
