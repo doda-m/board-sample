@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="/static/css/homestyle.css">
-	<!-- <script type="text/javascript" src="/static/js/checkform.js"></script> -->
 </head>
 
 <body>
@@ -17,8 +16,6 @@
 <div style="position: absolute; right: 70px; top: 40px">
 {% if state == "Login" %}
 	<font size=5>{{user}}</font>
-{% else %}
-	<!-- <font size=5>Guest</font> -->
 {% endif %}
 </div>
 
@@ -26,7 +23,6 @@
 
 <header>
 <h1 id="logo"><a href="https://dodare-board.azurewebsites.net/"><img src="/static/images/logo.png" alt="DDR-Board"></a></h1>
-<!-- <aside id="mainimg"><img src="/static/images/mainimg.jpg" alt=""></aside> -->
 </header>
 
 <nav id="menubar">
@@ -51,7 +47,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="panel-title">
-							<font size="4">{{msg.UserName}}</font>: {{msg.Date}} {{msg.Time}}</div>
+							<font size=4></font>{{msg.UserName}}</font>: {{msg.Date}} {{msg.Time}}</div>
 					</div>
 					<div class="panel-body">
 						{{msg.Messege}}
@@ -94,7 +90,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="panel-title">
-			<font size="4">{{historymsg.UserName}}</font>
+			<font size=4>{{historymsg.UserName}}</font>
 			: {{historymsg.Date}} {{historymsg.Time}}
 		</div>
 	</div>
@@ -103,7 +99,6 @@
 	</div>
 </div>
 {% endfor %}
-
 
 </section>
 
